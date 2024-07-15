@@ -1,0 +1,15 @@
+{% extends "base_content.html" %}
+
+{% block title %}{{ article.title }} - {{ SITENAME }}{% endblock %}
+
+{% block content %}
+<article>
+    <header>
+        <h1>{{ article.title }}</h1>
+    </header>
+    {{ article.content }}
+    <p>
+    {{ article.date|strftime('%d.%m.%Y') }}
+    </p>
+</article>
+{% endblock %}

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 100 100"
+   version="1.1"
+   id="svg4"
+   sodipodi:docname="corrected-ay-favicon.svg"
+   inkscape:version="1.3.1 (9b9bdc1480, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview4"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="8.1"
+     inkscape:cx="49.938272"
+     inkscape:cy="50"
+     inkscape:window-width="1920"
+     inkscape:window-height="1016"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4" />
+  <defs
+     id="defs2">
+    <linearGradient
+       id="bg-gradient"
+       x1="0%"
+       y1="0%"
+       x2="100%"
+       y2="100%">
+      <stop
+         offset="0%"
+         style="stop-color:#1a2a4d;stop-opacity:1"
+         id="stop1" />
+      <stop
+         offset="100%"
+         style="stop-color:#3a5f8a;stop-opacity:1"
+         id="stop2" />
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect
+     width="100"
+     height="100"
+     fill="url(#bg-gradient)"
+     id="rect2" />
+  <!-- А with string -->
+  <!-- Я stylized as a quill, correctly mirrored -->
+  <!-- Quill feathers -->
+  <g
+     id="g1"
+     transform="matrix(0.76653668,0,0,1.0052851,5.9086595,3.5791962)">
+    <path
+       d="m 14.928672,48.186361 q 20,-10 40,0"
+       stroke="#ffd700"
+       stroke-width="4"
+       fill="none"
+       id="path2" />
+    <path
+       d="M 4.3564935,82.233088 C 23.776432,35.672146 25.629133,-48.608487 54.444761,81.782317"
+       stroke="#ffd700"
+       stroke-width="4"
+       fill="none"
+       id="path5"
+       sodipodi:nodetypes="cc" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer1"
+     inkscape:label="Layer 1" />
+  <g
+     id="g2"
+     transform="matrix(1.7154503,0,0,1,-61.844717,5.1318585)">
+    <path
+       d="M 80.9021,24.187243 84.142916,47.737954 72.636791,22.514706 82.97093,15.658291 87.327978,6.3023214 69.525095,21.523942 77.226604,46.599397 66.231023,81.838439 68.700389,82.015117 84.232172,48.016436 87.352175,81.092845 90.855819,6.1548656 85.544414,21.108157 Z"
+       fill="#ffd700"
+       id="path3"
+       style="stroke-width:1.04066"
+       sodipodi:nodetypes="cccccccccccccc" />
+    <path
+       style="fill:#2e4c74;fill-opacity:1;stroke:#355781;stroke-width:1.00407;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="M 85.695742,20.088686 87.35897,81.414879"
+       id="path6"
+       sodipodi:nodetypes="cc" />
+  </g>
+  <circle
+     style="fill:#ffd700;fill-opacity:1;fill-rule:evenodd;stroke:#355781;stroke-linecap:round"
+     id="path4"
+     cx="88.059891"
+     cy="85.118935"
+     r="3.2017047" />
+</svg>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="{% block html_lang %}{{ DEFAULT_LANG }}{% endblock html_lang %}">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ SITENAME }}{%endblock%}</title>
+    <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/style.css" />
+    {% block extra_head %}{% endblock %}
+
+    <link rel="icon" type="image/svg+xml" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/favicon.svg">
+
+</head>
+<body>
+    {% block body %}
+    {% endblock %}
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <p>{{ SITENAME }}</p>
+                <p>{{ SITETAGLINE }}</p>
+            </div>
+            <nav class="footer-nav">
+                <a href="{{ SITEURL }}/about.html">О поэте</a>
+                <a href="{{ SITEURL }}/category/poems.html">Стихи</a>
+                <a href="{{ SITEURL }}/category/translations.html">Переводы</a>
+                <a href="{{ SITEURL }}/creative-process.html">Творческий процесс</a>
+            </nav>
+            <div class="footer-social">
+                <!-- Добавьте здесь иконки социальных сетей, если они есть -->
+                <!-- Пример: -->
+                <!-- <a href="#"><i class="fab fa-facebook"></i></a> -->
+                <!-- <a href="#"><i class="fab fa-twitter"></i></a> -->
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy; {{ YEAR }} {{ AUTHOR }}. Все права защищены.</p>
+        </div>
+    </footer>
+
+
+</body>
+</html>

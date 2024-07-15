@@ -1,0 +1,115 @@
+/* Poem container */
+.mdx-poem {
+    /*background-color: #f8f9fa;*/
+    background-color: rgba(255, 255, 255, 0.15);
+    border-left: 5px solid #007bff;
+    padding: 20px;
+    margin: 20px auto;
+    font-family: 'Georgia', serif;
+    line-height: 1.6;
+    /*color: #333;*/
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    font-size: 16px; /* Base font size */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* Poem stanza */
+.mdx-poem--stanza {
+    break-inside: avoid-column;
+    margin-bottom: 20px;
+}
+
+.mdx-poem--stanza:first-child {
+    margin-top: 0;
+}
+
+
+/* Poem line */
+.mdx-poem--line {
+    margin-bottom: 5px;
+}
+
+/* Poem title */
+.mdx-poem-title {
+    font-size: 1.5em;
+    color: #007bff;
+    margin-bottom: 15px;
+    text-align: center;
+    width: 100%;
+}
+
+/* Italic style for poems */
+.mdx-poem.italic {
+    font-style: italic;
+}
+
+/* Styles for the date */
+.mdx-poem-date {
+    font-style: italic;
+    /* color: #6c757d; */
+    color: #b1bcc5;
+    text-align: left;
+    margin-top: 20px;
+    font-size: 0.9em;
+}
+
+
+/* Two-column layout for wider screens */
+@media (min-width: 1001px) {
+    .mdx-poem-stanzas.multi-stanza {
+        column-count: 2;
+        width: 100%;
+        column-fill: balance;
+        column-gap: 10%;
+        padding-left: 5%;
+        width: 100%;
+        column-rule-style: double;
+        column-rule-width: 15px;
+        /*column-rule-color: #c1dfff;*/
+        column-rule-color: #4e89c9;
+    }
+
+    .mdx-poem-stanzas.single-stanza {
+        column-count: 1;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Poem stanzas container */
+    .mdx-poem-stanzas {
+        column-count: 2;
+    }
+
+    .mdx-poem-stanzas > .mdx-poem--stanza:only-child {
+        column-count: 1;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Reset column-count for .mdx-poem-stanzas when it has only one child */
+    .mdx-poem-stanzas > .mdx-poem--stanza:only-child ~ .mdx-poem-stanzas {
+        column-count: 1 !important;
+        width: auto;
+    }
+
+
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    .mdx-poem {
+        padding: 15px;
+    }
+}
+
+/* Larger screens */
+@media (min-width: 1200px) {
+    .mdx-poem {
+        font-size: 18px; /* Slightly larger base font size for larger screens */
+    }
+}

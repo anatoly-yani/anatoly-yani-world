@@ -1,0 +1,44 @@
+@import url('variables.css');
+
+.btn {
+    display: inline-block;
+    background-color: var(--cta-bg);
+    color: var(--cta-text-color);
+    padding: 0.8rem 1rem;
+    font-family: var(--cta-font);
+    font-style: italic;
+    font-size: 1rem;
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    text-decoration: none;
+    border-radius: 1em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn:hover,
+.btn:focus {
+    background-color: var(--cta-hover);
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background-color: var(--cta-bg);
+    color: var(--cta-text-color);
+}
+
+.btn-secondary {
+    background-color: var(--cta-text-color);
+    color: var(--cta-bg);
+}
+
+.btn-cta {
+    align-self: end;
+    position: relative;
+    top: -2em;
+    left: -1em;
+    width: 10ch;
+    min-width: min-content;
+}
