@@ -1,13 +1,16 @@
 #!/bin/bash
 
-# Directory to be processed
-THEME_DIR="anatoly-yani-pelican/themes/yani-theme"
-CONTENT_DIR="anatoly-yani-pelican/content"
-CONF_FILE="anatoly-yani-pelican/pelicanconf.py"
-PLUGIN_FILE="anatoly-yani-pelican/plugins/pelican_poetic.py"
+SCRIPT_DIR=$(basename `pwd`)
 
+cd ..
 # Output file
-OUTPUT="pelican.txt"
+OUTPUT="${SCRIPT_DIR}/pelican.txt"
+
+# Directories to be processed
+THEME_DIR="./themes/yani-theme"
+CONTENT_DIR="./content"
+CONF_FILE="./pelicanconf.py"
+PLUGIN_FILE="./plugins/pelican_poetic.py"
 
 # Ensure the output file is empty
 > "$OUTPUT"
