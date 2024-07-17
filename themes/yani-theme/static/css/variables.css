@@ -18,6 +18,7 @@
   --lighter-blue: #5a6e87;
   --blue: #007bff;
   --gold: #ffd700;
+  --light-gold: #f0e68c;
   --primary-bg: #1a2a4d;
   --light-gray: #e0e0e0;
   --main-gradient: linear-gradient(to right, #253c5e, #345479);
@@ -26,9 +27,9 @@
   --text-color: #fff;
   --hero-title-color: var(--gold);
   --cta-bg: var(--blue);
-  --main-heading-text-color: var(--gold);
+  --main-heading-text-color: var(--light-gold);
   --cta-text-color: #1a2a4d;
-  --cta-hover: #f0e68c;
+  --cta-hover: var(--light-gold);
   --overlay-bg: rgba(0, 0, 0, 0.5);
   --text-overlay-bg: rgba(0, 0, 0, 0.3);
   --text-overlay-bg-light: rgba(255, 255, 255, 0.15);

@@ -1,4 +1,5 @@
 function loadQuote() {
+  const selected_poems_url = '/selected-poems.html';
   fetch('/quotes.json')
     .then(response => response.json())
     .then(quotes => {
@@ -13,7 +14,7 @@ function loadQuote() {
       
       document.getElementById('quote-text').innerHTML = quote.text.replace(/\n/g, '<br>');
       document.getElementById('quote-source').innerHTML = `&laquo;${quote.source}&raquo;`;
-      document.getElementById('quote-link').href = `${quote.link}`;
+      document.getElementById('quote-link').href = `${selected_poems_url}#${quote.id}`;
     });
 }
 
