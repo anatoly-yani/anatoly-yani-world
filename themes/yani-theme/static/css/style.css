@@ -1,5 +1,6 @@
 @import url('variables.css');
 @import url('footer.css');
+@import url('poem.css');
 
 body {
     font-family: var(--body-font);
@@ -54,7 +55,7 @@ main section p {
   margin-top: 0.5em;
 }
 
-main section p::first-letter {
+main section.cta-content-section p::first-letter {
   vertical-align: middle;
   font-size: 1.5rem;
   font-weight: bold;
@@ -62,7 +63,6 @@ main section p::first-letter {
   line-height: 0em;
 }
 
-@import url('poem.css');
 
 
 h1, h2, h3 {

@@ -6,8 +6,8 @@
 nav.home-nav {
     background: linear-gradient(to right, #253c5e, #345479);
     padding: 1rem 0;
-    border-top: 2px solid #5a6e87;
-    border-bottom: 2px solid #5a6e87;
+    border-top: 2px solid var(--lighter-blue);
+    border-bottom: 2px solid var(--lighter-blue);
 }
 
 nav.home-nav ul {

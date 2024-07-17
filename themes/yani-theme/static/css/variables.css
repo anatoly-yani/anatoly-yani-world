@@ -15,6 +15,7 @@
 /* Colors */
 :root {
   --light-blue: #a9d2ff;
+  --lighter-blue: #5a6e87;
   --blue: #007bff;
   --gold: #ffd700;
   --primary-bg: #1a2a4d;
@@ -32,6 +33,11 @@
   --text-overlay-bg: rgba(0, 0, 0, 0.3);
   --text-overlay-bg-light: rgba(255, 255, 255, 0.15);
   --quote-link-text-color: var(--light-blue);
+
+  --footer-border-color: var(--lighter-blue);
+  --footer-text-color: var(--text-color);
+  --footer-link-hover-color: var(--cta-bg);
+
 }
 
 /* Spacing and Width */
