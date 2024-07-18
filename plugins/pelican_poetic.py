@@ -30,16 +30,14 @@ class PoemPreprocessor(Preprocessor):
                     poem_style = " italic" if start_match.group('style') else ""
                     poem_title = start_match.group('title') or ""
                     params = start_match.group('params')
-                    if params:
+                    if params or poem_title:
                         param_dict = dict(param.split('=') for param in params.strip().split())
                         if not poem_title:
                             poem_title = param_dict.get('title', '').strip()
                            
                         poem_date = param_dict.get('date', '').strip()
-                    else:
-                        poem_date = ""
-                        poem_title = ""
-                        poem_style = ""
+                    if not poem_title:
+                        poem_title = "* * *"
 
                     poem_title = poem_title.strip()
                     poem_lines = []
@@ -50,6 +48,9 @@ class PoemPreprocessor(Preprocessor):
                     inside_poem = False
                     params = None
                     new_lines.append(self.format_poem(poem_lines, poem_style, poem_title, poem_date))
+                    poem_date = ""
+                    poem_title = ""
+                    poem_style = ""
 
                 else:
                     poem_lines.append(line)

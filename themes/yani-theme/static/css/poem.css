@@ -35,10 +35,12 @@
 /* Poem title */
 .mdx-poem-title {
     font-size: 1.5em;
-    color: #007bff;
+    color: var(--light-gold);
+    margin: 0;
     margin-bottom: 15px;
     text-align: center;
     width: 100%;
+    padding-left: 5%;
 }
 
 /* Italic style for poems */

@@ -6,9 +6,8 @@
 <h1>{{ category }}</h1>
 {% for article in articles %}
     <article>
-        <h2><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h2>
+        <h2><a href="{{ SITEURL }}/{{ article.save_as }}">{{ article.title }}</a></h2>
         <p>{{ article.summary }}</p>
-        <p>Опубликовано: {{ article.date|strftime('%d.%m.%Y') }}</p>
     </article>
 {% endfor %}
 {% endblock %}

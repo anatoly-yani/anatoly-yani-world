@@ -36,7 +36,7 @@
             <h3>Последние публикации</h3>
             <ul>
             {% for article in articles_page.object_list[:5] %}
-                <li><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a> - {{ article.date|strftime('%d.%m.%Y') }}</li>
+                <li><a href="{{ SITEURL }}/{{ article.save_as }}">{{ article.title }}</a></li>
             {% endfor %}
             </ul>
         </section>
