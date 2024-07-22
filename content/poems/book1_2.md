@@ -1,3 +1,7 @@
+Title: стихотворения 50-100
+Date: 2024-07-22
+Category: poems
+
 <a id="bednye-moi-bashmaki"></a>
 ```poem date=1966
 Бедные мои башмаки!
