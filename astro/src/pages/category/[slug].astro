@@ -1,0 +1,22 @@
+---
+import CategoryLayout from '../../layouts/CategoryLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const categories = await getCollection('categories');
+
+  return categories.map(category => ({
+    params: { slug: category.slug },
+    props: { category }
+  }));
+}
+
+const { category } = Astro.props;
+const frontmatter = category.data;
+const { Content } = await category.render();
+---
+
+<CategoryLayout frontmatter={frontmatter}>
+  <Content />
+</CategoryLayout>
+

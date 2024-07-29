@@ -1,16 +1,18 @@
 #!/bin/bash
 
-SCRIPT_DIR=$(basename `pwd`)
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+cd $SCRIPT_DIR/..
 
-cd ..
+
 # Output file
-OUTPUT="${SCRIPT_DIR}/pelican.txt"
+OUTPUT="${SCRIPT_DIR}/astro_yani.txt"
 
 # Directories to be processed
-THEME_DIR="./themes/yani-theme"
-CONTENT_DIR="./content"
-CONF_FILE="./pelicanconf.py"
-PLUGIN_FILE="./plugins/pelican_poetic.py"
+SOURCE_DIR="./astro/src"
+PUBLIC_DIR="./astro/public"
+CONF_FILE="./astro/astro.config.mjs"
+NETLIFY_FILE="./astro/netlify.toml"
+README_FILE="./astro/README.md"
 
 # Ensure the output file is empty
 > "$OUTPUT"
@@ -43,8 +45,9 @@ process_files() {
 }
 
 # Process files in the directory
-process_files "$THEME_DIR"
-process_file "$PLUGIN_FILE"
+process_file "$README_FILE"
 process_file "$CONF_FILE"
+process_files "$SOURCE_DIR"
+process_files "$PUBLIC_DIR"
+process_file "$NETLIFY_FILE"
 
-process_files "$CONTENT_DIR"

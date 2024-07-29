@@ -1,0 +1,9 @@
+---
+import BaseContentLayout from './BaseContentLayout.astro';
+
+const {frontmatter} = Astro.props;
+---
+<BaseContentLayout frontmatter={frontmatter}>
+  <slot slot="content" />
+</BaseContentLayout>
+
