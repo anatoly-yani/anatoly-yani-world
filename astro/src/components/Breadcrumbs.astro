@@ -1,0 +1,40 @@
+---
+import { getGlobals } from '../utils/getGlobals';
+import { getCategory } from '../utils/getCategories';
+import { getCollection } from 'astro:content';
+
+const { SITEURL, META_CATEGORY, PAGES_CATEGORY } = getGlobals();
+
+const { frontmatter } = Astro.props;
+const { title, category } = frontmatter;
+
+let articleCategoryData, categoryId, catTitle;
+if (category !== PAGES_CATEGORY && category !== META_CATEGORY) {
+  if (!category) {
+    throw `Category should not be ${category}. Make sure article ${title} is set up correctly`;
+  }
+  const categories = await getCollection('categories');
+  articleCategoryData = await getCategory(categories, category);
+  if(articleCategoryData) {
+    categoryId = articleCategoryData.data.categoryId;
+    catTitle = articleCategoryData.data.title;
+  }
+}
+---
+<nav class="breadcrumbs">
+  <a href={`${SITEURL}/`}>Главная</a>
+  {(category === 'page') && (
+    <>
+      &raquo; <span>{title}</span>
+    </>
+  )}
+  {articleCategoryData && (
+    <>
+      &raquo; <a href={`${SITEURL}/category/${categoryId}.html`}>{catTitle}</a>
+    </>
+  )}
+  <>
+    &raquo; <span>{title}</span>
+  </>
+</nav>
+

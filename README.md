@@ -1,60 +1,43 @@
-# Anatoly Yani World
+# Анатолий Яни - Поэтический мир
 
-## Overview
-Anatoly Yani World is a website dedicated to life and poetry of this author. It is built using the Pelican static site generator, featuring a custom theme and plugin.
+Добро пожаловать на официальный сайт Анатолия Яни, выдающегося поэта и переводчика. Здесь вы найдете его оригинальные стихи, переводы зарубежных поэтов и автобиографические заметки.
 
-## Installation
+## О поэте
 
-### Prerequisites
-- Python 3.x
+Анатолий Иванович Яни - талантливый поэт, чье творчество охватывает широкий спектр тем и форм. От лирических стихотворений до острых сатирических произведений, от классических форм до экспериментальных палиндромов - поэзия Яни всегда находит отклик в сердцах читателей.
 
+Творчество Анатолия Яни отличается глубиной мысли, яркой образностью и виртуозным владением словом. Его стихи приглашают читателя в мир, где "слова плетут узоры нежнее, чем кружева, где рифмы звенят, как струны гуслей, а метафоры сверкают ярче звёзд".
 
-### Steps
-1. Clone the repository
+Помимо создания оригинальных произведений, Анатолий Яни известен своими мастерскими переводами зарубежных поэтов, открывающими русскоязычным читателям новые грани мировой поэзии.
 
-2. Install the dependencies:
-   ```bash
-   pip install pelican markdown
+## Разработка сайта
+
+Этот сайт разработан с использованием Astro, современного инструмента для создания быстрых статических сайтов.
+
+### Как запустить проект
+
+1. Установите зависимости:
+   ```
+   npm install
    ```
 
-3. Generate the website:
-   ```bash
-   pelican content
+2. Запустите сервер разработки:
+   ```
+   npm run dev
    ```
 
-## Usage
-To preview the website locally:
-```bash
-pelican --listen
+3. Откройте `http://localhost:4321` в вашем браузере.
+
+### Как собрать проект для хостинга
+
+Выполните следующую команду:
 ```
-Open your web browser and go to `http://localhost:8000` to view the website.
-
-## Directory Structure
-```
-content/
-├── images/
-├── pages/
-├── poems/
-├── quotes.json
-└── translations/
-
-themes/yani-theme/
-├── README.md
-├── static/
-│   ├── css/
-│   ├── images/
-│   └── js/
-└── templates/
-
-plugins/
-└── pelican_poetic.py
+npm run build
 ```
 
-## Configuration
-Configure Pelican settings in the `pelicanconf.py` file.
+Собранный сайт будет находиться в директории `dist/`.
 
-## Customization
-To customize the theme, modify the files in the `themes/yani-theme` directory. Update styles in the `static/css` directory or change templates in the `templates` directory.
+## Благодарности
 
-## Deployment
-Deploy the website to a hosting service such as GitHub Pages, Netlify, or Vercel. Follow the hosting service's instructions for deploying a static site.
+Особая благодарность семье Анатолия Яни за предоставленные материалы и поддержку в создании этого сайта.
+

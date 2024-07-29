@@ -1,9 +1,0 @@
-<nav class="pagination">
-    {% if articles_page.has_previous() %}
-        <a href="{{ SITEURL }}/{{ articles_previous_page.url }}">&laquo; Предыдущая</a>
-    {% endif %}
-    Страница {{ articles_page.number }} из {{ articles_paginator.num_pages }}
-    {% if articles_page.has_next() %}
-        <a href="{{ SITEURL }}/{{ articles_next_page.url }}">Следующая &raquo;</a>
-    {% endif %}
-</nav>

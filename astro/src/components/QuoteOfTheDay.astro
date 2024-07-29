@@ -1,0 +1,18 @@
+---
+import { getQuote } from './quote';
+import { getGlobals } from '../utils/getGlobals';
+
+import quotesJSON from '../content/quotes/quotes.json';
+
+const { selectedPoemsUrl } = getGlobals();
+
+const quote = getQuote(quotesJSON);
+const quoteText = quote.text.replace(/\n/g, `<br />`);
+console.log(quote)
+---
+<div id="quote-of-the-day">
+    <blockquote>
+        <p id="quote-text" set:html={quoteText} />
+    </blockquote>
+    <a id="quote-link" href=`${selectedPoemsUrl}#${quote.id}` class="btn btn-primary btn-cta"><cite id="quote-source">&laquo;{quote.source}&raquo;</cite></a>
+</div>

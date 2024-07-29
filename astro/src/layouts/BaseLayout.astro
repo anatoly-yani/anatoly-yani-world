@@ -1,0 +1,56 @@
+---
+import { getGlobals } from '../utils/getGlobals';
+
+const lang = "ru";
+const {
+  SITENAME,
+  SITETAGLINE,
+  STATICPATH,
+  SITEURL,
+  YEAR,
+  AUTHOR
+} = getGlobals();
+const { title } = Astro.props;
+
+---
+<html lang={lang}>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <slot name="title">
+      <title>
+        {title} - {SITETAGLINE} - {SITENAME}
+      </title>
+    </slot>
+    <link rel="stylesheet" href={`${STATICPATH}/styles/global.css`} />
+    <slot name="extra_head" />
+    <link rel="icon" type="image/svg+xml" href={`${STATICPATH}/images/favicon.svg`} />
+</head>
+<body>
+  <slot name="body" />
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <p>{SITENAME}</p>
+                <p>{SITETAGLINE}</p>
+            </div>
+            <nav class="footer-nav">
+                <a href={`${SITEURL}/about.html`}>О поэте</a>
+                <a href={`${SITEURL}/category/poems.html`}>Стихи</a>
+                <a href={`${SITEURL}/category/translations.html`}>Переводы</a>
+                <a href={`${SITEURL}/creative-process.html`}>Творческий процесс</a>
+            </nav>
+            <div class="footer-social">
+                <!-- Добавьте здесь иконки социальных сетей, если они есть -->
+                <!-- Пример: -->
+                <!-- <a href="#"><i class="fab fa-facebook"></i></a> -->
+                <!-- <a href="#"><i class="fab fa-twitter"></i></a> -->
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy; {YEAR} {AUTHOR}. Все права защищены.</p>
+        </div>
+    </footer>
+
+</html>
+

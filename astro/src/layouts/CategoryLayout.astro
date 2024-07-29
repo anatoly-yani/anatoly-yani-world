@@ -1,0 +1,33 @@
+---
+import BaseContentLayout from './BaseContentLayout.astro';
+import { getArticlesByCategory } from '../utils/getArticles';
+import { getGlobals } from '../utils/getGlobals';
+
+
+const { SITEURL, META_CATEGORY } = getGlobals();
+const { frontmatter } = Astro.props;
+const { title, category, categoryId } = frontmatter;
+
+if(category !== META_CATEGORY) {
+  throw `Make sure ${title} has 'category: ${META_CATEGORY}'`;
+} 
+if(!categoryId) {
+  throw `'categoryId' is undefined. Make sure ${title} has categoryId in frontmatter`
+}
+
+const articles = await getArticlesByCategory(categoryId);
+---
+<BaseContentLayout frontmatter={frontmatter}>
+  <Fragment slot="title">
+    <title>{title}</title>
+  </Fragment>
+  <Fragment slot="content">
+    {articles.map(article => (
+      <article>
+        <h2><a href={`${SITEURL}${article.url}`}>{article.title}</a></h2>
+        <p>{article.summary}</p>
+      </article>
+    ))}
+  </Fragment>
+</BaseContentLayout>
+
