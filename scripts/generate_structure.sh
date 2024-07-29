@@ -12,14 +12,14 @@ SOURCE_DIR="./astro/src"
 PUBLIC_DIR="./astro/public"
 CONF_FILE="./astro/astro.config.mjs"
 NETLIFY_FILE="./astro/netlify.toml"
-README_FILE="./astro/README.md"
+README_FILE="./README.md"
 
 # Ensure the output file is empty
 > "$OUTPUT"
 
 # Get the directory structure using tree command and append to the output file
-tree "$THEME_DIR" >> "$OUTPUT"
-tree "$CONTENT_DIR" >> "$OUTPUT"
+tree "$SOURCE_DIR" >> "$OUTPUT"
+tree "$PUBLIC_DIR" >> "$OUTPUT"
 
 process_file() {
     local file=$1
