@@ -3,12 +3,10 @@ import BaseContentLayout from './BaseContentLayout.astro';
 import { getArticlesByCategory } from '../utils/getArticles';
 import { getGlobals } from '../utils/getGlobals';
 
-import { getCollection } from 'astro:content';
-
 
 const { SITEURL, META_CATEGORY } = getGlobals();
 const { frontmatter } = Astro.props;
-const { title, category, categoryId, date } = frontmatter;
+const { title, category, categoryId } = frontmatter;
 
 if(category !== META_CATEGORY) {
   throw `Make sure ${title} has 'category: ${META_CATEGORY}'`;
@@ -25,7 +23,7 @@ const articles = await getArticlesByCategory(categoryId);
   </Fragment>
   <Fragment slot="content">
     {articles.map(article => (
-      <article key={article.url}>
+      <article>
         <h2><a href={`${SITEURL}${article.url}`}>{article.title}</a></h2>
         <p>{article.summary}</p>
       </article>

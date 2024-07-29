@@ -10,7 +10,7 @@ export async function getArticlesByCategory(category) {
   const posts = await getCollection(category);
 
   return posts.map((post) => {
-    const { data, slug, body } = post;
+    const { data, slug } = post;
 
     const summary = data.summary;
 
