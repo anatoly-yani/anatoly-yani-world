@@ -34,13 +34,26 @@
 
 /* Poem title */
 .mdx-poem-title {
+    position: relative;
     font-size: 1.5em;
     color: var(--light-gold);
     margin: 0;
     margin-bottom: 15px;
-    text-align: center;
     width: 100%;
-    padding-left: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    padding: 0;
+    max-width: 500px;
+}
+
+/* Poem ID */
+.mdx-poem-id {
+    color: var(--light-blue);
+    font-style: italic;
+    font-weight: normal;
+    font-size: 0.8em;
 }
 
 /* Italic style for poems */
@@ -99,6 +112,15 @@
         width: auto;
     }
 
+    .mdx-poem-title {
+        .multi-stanza & {
+            max-width: 100%;
+            padding: 0 5%;
+        }
+        .single-stanza & {
+            max-width: 500px;
+        }
+    }
 
 }
 
