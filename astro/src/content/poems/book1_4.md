@@ -1,4 +1,3 @@
-<<<<<<< HEAD:astro/src/content/poems/book1_4.md
 ---
 title: Нетронутый Грааль [150-200]
 date: 2024-07-22

@@ -2,3 +2,4 @@ __pycache__/
 output/
 scripts/astro_yani.txt
 *.swp
+astro/src/content/poems/formatting_style.md
