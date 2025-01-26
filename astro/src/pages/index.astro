@@ -7,8 +7,7 @@ import { getArticles } from '../utils/getArticles';
 const STATICPATH = "";
 const SITENAME = "На струнах трепетных гуслей";
 const SITETAGLINE = "Мир поэзии Анатолия Яни";
-const SITEURL = "";
-const title = "Анатолий Яни";
+const SITEURL = "https://anatoly-yani.com/";
 
 let articles = await getArticles();
 articles = articles.slice(0, 5);
@@ -18,7 +17,7 @@ const CREATIVE_PROCESS_EXCERPT = `Для Анатолия Яни творчес�
 
 
 ---
-<BaseLayout>
+<BaseLayout title="Анатолий Яни">
   <Fragment slot="extra_head">
     <link rel="stylesheet" href={`${STATICPATH}/styles/home.css`} />
   </Fragment>
