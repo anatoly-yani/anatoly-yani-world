@@ -1,15 +1,15 @@
-import { visit } from "unist-util-visit";
+import { visit } from 'unist-util-visit';
 
 function remarkPoem() {
   return (tree) => {
-    visit(tree, "code", (node) => {
-      if (node.lang === "poem") {
-        const metastring = node.meta || "";
-        const lines = node.value.split("\n");
+    visit(tree, 'code', (node) => {
+      if (node.lang === 'poem') {
+        const metastring = node.meta || '';
+        const lines = node.value.split('\n');
         const structure = parsePoemStructure(metastring, lines);
         const html = renderPoemStructure(structure);
 
-        node.type = "html";
+        node.type = 'html';
         node.value = html;
       }
     });
@@ -18,18 +18,18 @@ function remarkPoem() {
 
 export function parsePoemStructure(metastring, lines) {
   const structure = {
-    id: "",
-    anchor: "",
-    title: "",
-    subtitle: "",
+    id: '',
+    anchor: '',
+    title: '',
+    subtitle: '',
     epigraph: [],
     parts: [],
     metadata: {},
-    notes: {},
+    notes: {}
   };
 
   let currentPart = null;
-  let currentSection = "header";
+  let currentSection = 'header';
   let globalMetadata = {};
   let dedicationLines = [];
 
@@ -45,17 +45,18 @@ export function parsePoemStructure(metastring, lines) {
   function applyCurrentPart() {
     structure.parts.push(currentPart);
     if (dedicationLines.length > 0) {
-      currentPart.dedication = dedicationLines.join("\n");
+      currentPart.dedication = dedicationLines.join('\n');
       dedicationLines = [];
     }
   }
 
-  function startNewPart(title = "") {
+  function startNewPart(title = '') {
     if (currentPart) {
       applyCurrentPart();
     }
     currentPart = { title: title, content: [], metadata: {} };
   }
+
 
   // main part always present
   startNewPart();
@@ -64,35 +65,35 @@ export function parsePoemStructure(metastring, lines) {
     const trimmedLine = line.trim();
 
     switch (currentSection) {
-      case "header":
-        if (trimmedLine.startsWith("[") && trimmedLine.endsWith("]")) {
+      case 'header':
+        if (trimmedLine.startsWith('[') && trimmedLine.endsWith(']')) {
           structure.id = trimmedLine.slice(1, -1);
-        } else if (trimmedLine.startsWith("# ")) {
+        } else if (trimmedLine.startsWith('# ')) {
           structure.title = trimmedLine.slice(2);
-        } else if (trimmedLine.startsWith("## ")) {
+        } else if (trimmedLine.startsWith('## ')) {
           structure.subtitle = trimmedLine.slice(3);
-        } else if (trimmedLine.startsWith("### ")) {
+        } else if (trimmedLine.startsWith('### ')) {
           startNewPart(trimmedLine.slice(4));
-        } else if (trimmedLine.startsWith("> ")) {
+        } else if (trimmedLine.startsWith('> ')) {
           const epigraphLine = trimmedLine.slice(2).trim();
           if (epigraphLine) {
             structure.epigraph.push(epigraphLine);
           }
-        } else if (trimmedLine.startsWith("@")) {
+        } else if (trimmedLine.startsWith('@')) {
           dedicationLines.push(trimmedLine.slice(1).trim());
-        } else if (trimmedLine === "---") {
-          currentSection = "metadata";
-        } else if (trimmedLine !== "") {
-          currentSection = "content";
+        } else if (trimmedLine === '---') {
+          currentSection = 'metadata';
+        } else if (trimmedLine !== '') {
+          currentSection = 'content';
           currentPart.content.push(trimmedLine);
         }
         break;
 
-      case "metadata":
-        if (trimmedLine === "---") {
-          currentSection = "content";
+      case 'metadata':
+        if (trimmedLine === '---') {
+          currentSection = 'content';
         } else {
-          const [key, value] = trimmedLine.split(":").map((s) => s.trim());
+          const [key, value] = trimmedLine.split(':').map(s => s.trim());
           if (key && value) {
             if (currentPart) {
               currentPart.metadata[key] = value;
@@ -103,16 +104,16 @@ export function parsePoemStructure(metastring, lines) {
         }
         break;
 
-      case "content":
-        if (trimmedLine.startsWith("### ")) {
+      case 'content':
+        if (trimmedLine.startsWith('### ')) {
           startNewPart(trimmedLine.slice(4));
-        } else if (trimmedLine === "---") {
-          currentSection = "metadata";
-        } else if (trimmedLine.startsWith("[!note")) {
-          currentSection = "note";
+        } else if (trimmedLine === '---') {
+          currentSection = 'metadata';
+        } else if (trimmedLine.startsWith('[!note')) {
+          currentSection = 'note';
           const noteId = trimmedLine.slice(7, -1).trim();
           structure.notes[noteId] = [];
-        } else if (trimmedLine.startsWith(">")) {
+        } else if (trimmedLine.startsWith('>')) {
           const epigraphLine = trimmedLine.slice(1).trim();
           if (epigraphLine) {
             structure.epigraph.push(epigraphLine);
@@ -122,12 +123,12 @@ export function parsePoemStructure(metastring, lines) {
         }
         break;
 
-      case "note":
-        if (trimmedLine.startsWith("[!note")) {
+      case 'note':
+        if (trimmedLine.startsWith('[!note')) {
           const noteId = trimmedLine.slice(7, -1).trim();
           structure.notes[noteId] = [];
-        } else if (trimmedLine === "---") {
-          currentSection = "metadata";
+        } else if (trimmedLine === '---') {
+          currentSection = 'metadata';
         } else {
           const lastNoteId = Object.keys(structure.notes).pop();
           structure.notes[lastNoteId].push(trimmedLine);
@@ -143,10 +144,10 @@ export function parsePoemStructure(metastring, lines) {
   structure.metadata = { ...globalMetadata, ...structure.metadata };
 
   // Process parts content
-  structure.parts.forEach((part) => {
+  structure.parts.forEach(part => {
     part.content = processLinesArray(part.content);
   });
-
+  
   // Process notes
   for (const noteId in structure.notes) {
     structure.notes[noteId] = processLinesArray(structure.notes[noteId]);
@@ -158,7 +159,7 @@ export function parsePoemStructure(metastring, lines) {
 
 function processLinesArray(lines) {
   // Remove trailing empty lines
-  while (lines.length > 0 && lines[lines.length - 1].trim() === "") {
+  while (lines.length > 0 && lines[lines.length - 1].trim() === '') {
     lines.pop();
   }
 
@@ -167,9 +168,9 @@ function processLinesArray(lines) {
 
   for (let i = 0; i < lines.length; i++) {
     const trimmedLine = lines[i].trim();
-    if (trimmedLine === "") {
+    if (trimmedLine === '') {
       if (!emptyLineEncountered && i > 0 && i < lines.length - 1) {
-        result.push("");
+        result.push('');
         emptyLineEncountered = true;
       }
     } else {
@@ -184,24 +185,24 @@ function processLinesArray(lines) {
 function processMetadata(structure) {
   // Process global metadata
   const processedMetadata = { ...structure.metadata };
-
+  
   // Check for id in global metadata
   if (processedMetadata.id) {
     structure.id = processedMetadata.id;
     delete processedMetadata.id;
   }
-
+  
   // Check for id in parts metadata
-  structure.parts.forEach((part) => {
+  structure.parts.forEach(part => {
     if (part.metadata && part.metadata.id) {
       structure.id = part.metadata.id;
       delete part.metadata.id;
     }
   });
-
+  
   // Initialize id if not found
   if (!structure.id) {
-    structure.id = "";
+    structure.id = '';
   }
 
   // Check for anchor in global metadata
@@ -209,50 +210,43 @@ function processMetadata(structure) {
     structure.anchor = processedMetadata.anchor;
     delete processedMetadata.anchor;
   }
-
+  
   // Check for anchor in parts metadata
-  structure.parts.forEach((part) => {
+  structure.parts.forEach(part => {
     if (part.metadata && part.metadata.anchor) {
       structure.anchor = part.metadata.anchor;
       delete part.metadata.anchor;
     }
   });
-
+  
   // Initialize anchor if not found
   if (!structure.anchor) {
-    structure.anchor = "";
+    structure.anchor = '';
   }
-
+  
   // Update structure with processed metadata
   structure.metadata = processedMetadata;
-
+  
   return structure;
 }
 
 export function renderPoemStructure(structure) {
-  const anchorHtml = structure.anchor ? `<a id="${structure.anchor}"></a>` : "";
-
+  const anchorHtml = structure.anchor ? `<a id="${structure.anchor}"></a>` : '';
+  
   // Only add id attribute if structure.id exists
-  const divId = structure.id ? ` id="poem-${structure.id}"` : "";
+  const divId = structure.id ? ` id="poem-${structure.id}"` : '';
   let html = `${anchorHtml}<div class="mdx-poem"${divId}>`;
-
+  
   // Show poem ID in the title if it exists (can be string or number)
-  const poemId = structure.id
-    ? `<span class="mdx-poem-id">${structure.id}</span>`
-    : "";
-
-  html += `<h3 class="mdx-poem-title">${poemId}${
-    escapeHtml(structure.title) || "* * *"
-  }</h3>`;
+  const poemId = structure.id ? 
+    `<span class="mdx-poem-id">${structure.id}</span>` : '';
+  
+  html += `<h3 class="mdx-poem-title">${poemId}${escapeHtml(structure.title) || '* * *'}</h3>`;
   if (structure.subtitle) {
-    html += `<h4 class="mdx-poem-subtitle">${escapeHtml(
-      structure.subtitle
-    )}</h4>`;
+    html += `<h4 class="mdx-poem-subtitle">${escapeHtml(structure.subtitle)}</h4>`;
   }
   if (structure.epigraph && structure.epigraph.length > 0) {
-    html += `<blockquote class="mdx-poem-epigraph">${structure.epigraph
-      .map(escapeHtml)
-      .join("<br>")}</blockquote>`;
+    html += `<blockquote class="mdx-poem-epigraph">${structure.epigraph.map(escapeHtml).join('<br>')}</blockquote>`;
   }
 
   structure.parts.forEach((part, index) => {
@@ -261,9 +255,7 @@ export function renderPoemStructure(structure) {
       html += `<h5 class="mdx-poem-part-title">${escapeHtml(part.title)}</h5>`;
     }
     if (part.dedication) {
-      html += `<p class="mdx-poem-dedication">${escapeHtml(
-        part.dedication
-      ).replace(/\n/g, "<br>")}</p>`;
+      html += `<p class="mdx-poem-dedication">${escapeHtml(part.dedication).replace(/\n/g, '<br>')}</p>`;
     }
     html += renderStanzas(part.content);
     html += renderMetadata(part.metadata);
@@ -278,24 +270,21 @@ export function renderPoemStructure(structure) {
 }
 
 function renderStanzas(content) {
-  const stanzas = content.join("\n").split("\n\n");
-  return stanzas
-    .map(
-      (stanza) =>
-        `<p class="mdx-poem--stanza">${stanza
-          .split("\n")
-          .map(
-            (line) =>
-              `<span class="mdx-poem--line">${escapeHtml(line)}</span><br>`
-          )
-          .join("")}</p>`
-    )
-    .join("");
+  const stanzas = content.join('\n').split('\n\n');
+  return stanzas.map(stanza => 
+    `<p class="mdx-poem--stanza">${
+      stanza.split('\n')
+        .map(line => `<span class="mdx-poem--line">${escapeHtml(line)}</span><br>`)
+        .join('')
+    }</p>`
+  ).join('');
 }
+
+
 
 function renderMetadata(metadata) {
   if (Object.keys(metadata).length === 0) {
-    return "";
+    return '';
   }
 
   let html = '<div class="mdx-poem-metadata">';
@@ -314,54 +303,48 @@ function renderMetadata(metadata) {
     if (metadata.translated_by) {
       html += `<p>Перевод: ${escapeHtml(metadata.translated_by)}</p>`;
     }
-    html += "</div>";
+    html += '</div>';
   }
 
   // Handle other metadata
   for (const [key, value] of Object.entries(metadata)) {
-    if (
-      key !== "date" &&
-      key !== "translation_message" &&
-      key !== "translated_by"
-    ) {
-      html += `<p><strong>${escapeHtml(key)}:</strong> ${escapeHtml(
-        value
-      )}</p>`;
+    if (key !== 'date' && key !== 'translation_message' && key !== 'translated_by') {
+      html += `<p><strong>${escapeHtml(key)}:</strong> ${escapeHtml(value)}</p>`;
     }
   }
 
-  html += "</div>";
+  html += '</div>';
   return html;
 }
 
+
 function renderNotes(notes) {
   if (Object.keys(notes).length === 0) {
-    return "";
+    return '';
   }
 
   let html = '<div class="mdx-poem-notes">';
   html += '<h4>Примечания:</h4><ol class="mdx-poem-notes-list">';
-
+  
   for (const [id, note] of Object.entries(notes)) {
-    const noteContent = Array.isArray(note) ? note.join(" ") : note;
+    const noteContent = Array.isArray(note) ? note.join(' ') : note;
     html += `<li id="note-${id}" class="mdx-poem-note" data-note-id="${id}">`;
     html += `<span class="mdx-poem-note-number">${id}</span>`;
-    html += `<span class="mdx-poem-note-content">${escapeHtml(
-      noteContent.trim()
-    )}</span>`;
-    html += "</li>";
+    html += `<span class="mdx-poem-note-content">${escapeHtml(noteContent.trim())}</span>`;
+    html += '</li>';
   }
-
-  html += "</ol></div>";
+  
+  html += '</ol></div>';
   return html;
 }
 
+
 function escapeHtml(text) {
   return text
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
 }
 
 export default remarkPoem;
