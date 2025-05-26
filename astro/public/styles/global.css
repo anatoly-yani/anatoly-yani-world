@@ -3,15 +3,15 @@
 @import url('poem.css');
 
 body {
-    font-family: var(--body-font);
+    /* font-family: var(--body-font); */ /* Handled by page-layout.css */
 
-    line-height: 1.6;
-    color: var(--light-gray);
+    /* line-height: 1.6; */ /* Handled by page-layout.css */
+    /* color: var(--light-gray); */ /* Handled by page-layout.css */
 
-    margin: 0;
-    padding: 0;
-    background: var(--main-gradient);
-    min-width: 300px;
+    /* margin: 0; */ /* Handled by page-layout.css */
+    /* padding: 0; */ /* Handled by page-layout.css */
+    /* background: var(--main-gradient); */ /* Handled by page-layout.css */
+    min-width: 300px; /* Keep this potentially, or review if page-layout.css covers it */
 }
 
 header {
@@ -30,26 +30,8 @@ header a {
     text-decoration: none;
 }
 
-.breadcrumbs {
-    background-color: #e9ecef;
-    padding: 0.5rem 2rem;
-    font-size: 0.9rem;
-    color: var(--lighter-blue);
-}
-.breadcrumbs a {
-    color: #007bff;
-    text-decoration: none;
-}
-.breadcrumbs a:hover {
-    text-decoration: underline;
-}
-
 /* Main content styles for content pages */
-main {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 0 2rem;
-}
+/* main rule removed as .content in page-layout.css handles this */
 
 main section p {
   margin: 0;
@@ -67,9 +49,11 @@ main section.cta-content-section p::first-letter {
 
 
 h1, h2, h3 {
-    color: #ffd700;
+    /* color: #ffd700; */ /* page-title class in page-layout.css handles h1, review others if needed */
 }
 
+/* Generic a styles commented out, page-layout.css handles specific links */
+/*
 a {
     color: #007bff;
     text-decoration: none;
@@ -83,10 +67,13 @@ a:hover {
 a:active {
   color: #ffaa00;
 }
+*/
 
 /* Responsive design */
 @media (max-width: 768px) {
 
+    /* nav rules removed as page-layout.css handles navigation responsiveness */
+    /*
     nav ul {
         flex-direction: column;
         align-items: center;
@@ -95,5 +82,6 @@ a:active {
     nav ul li {
         margin: 0.5rem 0;
     }
+    */
 }
 

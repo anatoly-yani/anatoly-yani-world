@@ -3,36 +3,33 @@ import BaseLayout from './BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import { getGlobals } from '../utils/getGlobals';
 
-const { SITENAME, SITEURL } = getGlobals();
+const { SITEURL } = getGlobals(); 
 const { frontmatter } = Astro.props;
 const { title } = frontmatter;
 ---
 <BaseLayout title={title}>
   <Fragment slot="body">
-    <header>
-        <h1><a href={`${SITEURL}/`}>{SITENAME}</a></h1>
-        <nav class="header-nav">
-            <ul>
-                <li><a href={`${SITEURL}/about.html`}>О поэте</a></li>
-                <li><a href={`${SITEURL}/category/poems.html`}>Нетронутый Грааль</a></li>
-                <li><a href={`${SITEURL}/category/translations.html`}>Вино из грозди сердца</a></li>
-                <li><a href={`${SITEURL}/creative-process.html`}>Звенящая бессонница</a></li>
-            </ul>
-        </nav>
-    </header>
-
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="#" class="nav-item">О поэте</a>
+            <a href="#" class="nav-item active">Нетронутый Грааль</a>
+            <a href="#" class="nav-item">Вино из грозди сердца</a>
+            <a href="#" class="nav-item">Звенящая бессонница</a>
+        </div>
+    </nav>
 
     <Breadcrumbs
       frontmatter={frontmatter}
-      SITEURL={SITEURL}
+      SITEURL={SITEURL} 
     />
 
-
-    <main>
-      <article>
-        {title && (<h1>{title}</h1>)}
-        <slot name="content">Slot "content" not found</slot>
-      </article>
-    </main>
+    <div class="content">
+        <main>
+          <article>
+            {title && (<h1 class="page-title">{title}</h1>)}
+            <slot name="content">Slot "content" not found</slot>
+          </article>
+        </main>
+    </div>
   </Fragment>
 </BaseLayout>

@@ -21,20 +21,38 @@ if (category !== PAGES_CATEGORY && category !== META_CATEGORY) {
   }
 }
 ---
-<nav class="breadcrumbs">
-  <a href={`${SITEURL}/`}>Главная</a>
-  {(category === 'page') && (
-    <>
-      &raquo; <span>{title}</span>
-    </>
-  )}
-  {articleCategoryData && (
-    <>
-      &raquo; <a href={`${SITEURL}/category/${categoryId}.html`}>{catTitle}</a>
-    </>
-  )}
-  <>
-    &raquo; <span>{title}</span>
-  </>
-</nav>
+<div class="breadcrumb">
+    <div class="breadcrumb-container">
+        <div class="breadcrumb-links">
+            <a href={SITEURL + "/"}>Главная</a>
+            
+            {/* Case 1: Simple page (e.g., /about.html) */}
+            {category === PAGES_CATEGORY && category !== META_CATEGORY && (
+                <>
+                    <span class="breadcrumb-separator">»</span>
+                    <span class="breadcrumb-current">{title}</span>
+                </>
+            )}
+            
+            {/* Case 2: Article within a category (e.g., /category/poems/article-title.html) */}
+            {articleCategoryData && category !== PAGES_CATEGORY && category !== META_CATEGORY && (
+                <>
+                    <span class="breadcrumb-separator">»</span>
+                    <a href={`${SITEURL}/category/${categoryId}.html`}>{catTitle}</a>
+                    <span class="breadcrumb-separator">»</span>
+                    <span class="breadcrumb-current">{title}</span>
+                </>
+            )}
 
+            {/* Case 3: Category listing page (e.g., /category/poems.html) */}
+            {/* This assumes 'title' prop will be the category title for these pages */}
+            {/* And it's not a 'page' type, not a 'meta' category, and doesn't have articleCategoryData (which means it's not an article page) */}
+            {category !== PAGES_CATEGORY && category !== META_CATEGORY && !articleCategoryData && (
+                <>
+                    <span class="breadcrumb-separator">»</span>
+                    <span class="breadcrumb-current">{title}</span>
+                </>
+            )}
+        </div>
+    </div>
+</div>
